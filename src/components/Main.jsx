@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import CalendarElement from './Calendar'
 // import EventList from './EventList'
 import Organization from './Organization'
+import AddEvent from './AddEvent'
 
 export default function Main () {
     return (
@@ -17,6 +18,7 @@ export default function Main () {
             <Route path='/calendar' element={<CalendarElement />} />
             {/* <Route path='/eventlist' element={<EventList />} /> */}
             <Route path='/organization' element={<Organization />} />
+            <Route path='/addevent' element={<AddEvent />} />
         </Routes>
     )
 }
