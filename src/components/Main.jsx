@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 // import User from './User'
 import CalendarElement from './Calendar'
 // import EventList from './EventList'
-// import Organization from './Organization'
+import Organization from './Organization'
 
 export default function Main () {
     return (
@@ -16,7 +16,7 @@ export default function Main () {
             {/* <Route path='/header' element={<Header />} /> */}
             <Route path='/calendar' element={<CalendarElement />} />
             {/* <Route path='/eventlist' element={<EventList />} /> */}
-            {/* <Route path='/Organization' element={<Organization />} /> */}
+            <Route path='/organization' element={<Organization />} />
         </Routes>
     )
 }

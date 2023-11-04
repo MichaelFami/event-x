@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Calendar from "react-calendar";
+import './Calendar.css'
 
 export default function CalendarElement () {
     const [value, setValue] = useState(new Date())
@@ -8,6 +9,8 @@ export default function CalendarElement () {
         setValue(nextValue)
     }
     return (
-        <Calendar onChange={handleChange} value={value} />
+        <div className='calendar-outer'>
+            <Calendar onChange={handleChange} value={value} />
+        </div>
     )
 }
