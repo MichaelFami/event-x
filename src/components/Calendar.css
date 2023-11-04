@@ -1,0 +1,50 @@
+.calendar-outer {
+    width: 350px;
+}
+.react-calendar button {
+    margin: 0;
+    border: 0;
+    outline: none;
+}
+.react-calendar button:hover {
+    cursor: pointer;
+}
+
+
+/* navigation */
+.react-calendar__navigation {
+    display: flex;
+    height: 44px;
+    margin-bottom: 1rem;
+}
+.react-calendar__navigation button {
+    background: none;
+    margin: 2px 0;
+    font-size: 1.4rem;
+    border: none;
+}
+.react-calendar__navigation button:hover, .react-calendar__navigation button:focus {
+    background-color: #f6f6f6;
+}
+.react-calendar__navigation__arrow {
+    font-size: 1.6rem;
+    width: 40px;
+    height: 40px;
+    /* background-color: green; */
+}
+
+/* days */
+.react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    
+}
+
+/*  */
+.react-calendar__tile {
+    background-color: white;
+    height: 50px;
+    /* border-radius: 50%; */
+    border: none;
+    /* margin: 1px; */
+}
