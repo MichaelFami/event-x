@@ -1,0 +1,14 @@
+.greeting{
+    display: flex;
+    justify-content: center;
+}
+
+.member-event{
+display: flex;
+justify-content: space-between;
+flex-direction: row;
+flex-wrap: wrap;
+text-decoration: none;
+list-style-type: none;
+border:1px solid black
+}
