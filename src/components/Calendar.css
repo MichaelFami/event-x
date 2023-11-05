@@ -9,6 +9,9 @@
 .react-calendar button:hover {
     cursor: pointer;
 }
+.selectedDate {
+    background-color: #d46841;
+}
 
 
 /* navigation */
