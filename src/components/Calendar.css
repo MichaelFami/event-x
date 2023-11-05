@@ -37,7 +37,18 @@
 .react-calendar__month-view__weekdays {
     text-align: center;
     text-transform: uppercase;
-    
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: #d46841;
+  }
+
+.react-calendar__month-view__days__day--neighboringMonth {
+    color: #a0a0b1;
+  }
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
 }
 
 /*  */
