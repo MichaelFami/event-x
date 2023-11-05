@@ -7,8 +7,19 @@ $info: #283937;
 $warning: #fa850b;
 $danger: #f44336;
 
-.user-more-info {
-    background-color: pink;
+// outer containers
+.user-outer, .org-outer, .find-event-outer, .event-list-outer, .event-outer {
+    margin: 10px;
+}
+
+// nav
+.nav {
+    background-color: orange;
+}
+
+.user-more-info, .org-more-info {
+    margin-top: 20px;
+    // background-color: rgba(255, 192, 203, 0.406);
 }
 
 @import '/node_modules/bootstrap/scss/bootstrap.scss'

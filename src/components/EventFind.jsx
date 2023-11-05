@@ -4,15 +4,22 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 
 export default function EventFind () {
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState({})
+
     const handleChange = () => {
         // grabs the information from the search bar
     }
-    const handleSumbit = () => {
+    const handleSumbit = (e) => {
+        e.preventDefault()
+        const dataToSubmit = {
+            ...search
+        }
         // take you to a page showing results
+
     }
     return (
-        <div>
+        <div className='find-event-outer'>
+            <h3>Find an Event</h3>
             <InputGroup className="mb-3">
                 <Form.Control
                 placeholder="Find an Event"

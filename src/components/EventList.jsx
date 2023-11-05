@@ -2,18 +2,18 @@ import Card from 'react-bootstrap/Card'
 
 export default function EventList () {
     return (
-        <div>
+        <div className='event-list-outer'>
             <h1>Upcoming Events</h1>
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+                    <Card.Title>Event Name</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Organization</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-muted">Date</Card.Subtitle>
                     <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                    Quick description of the event. Invite the reader to click and learn more
                     </Card.Text>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
+                    <Card.Link href="#">Read More</Card.Link>
+                    <Card.Link href="#">View Organization</Card.Link>
                 </Card.Body>
             </Card>
         </div>
