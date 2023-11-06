@@ -5,7 +5,6 @@ import CalendarElement from "./Calendar"
 export default function Organization () {
     return (
         <div >
-            <Nav />
             <div className="org-outer">
                 <h1 className="title">Organization Name</h1>
                 <CalendarElement />
@@ -19,15 +18,15 @@ export default function Organization () {
                     </ul>
                     <Link className="links"><h3>Past Events</h3></Link>
                     <ul>
-                        <li>Past event-clickable</li>
-                        <li>Past event-clickable</li>
-                        <li>Past event-clickable</li>
+                        <li>Past event</li>
+                        <li>Past event</li>
+                        <li>Past event</li>
                     </ul>
                     <Link className="links"><h3>Members</h3></Link>
                     <ul>
-                        <li>Member Name-clickable</li>
-                        <li>Member Name-clickable</li>
-                        <li>Member Name-clickable</li>
+                        <li>Member Name</li>
+                        <li>Member Name</li>
+                        <li>Member Name</li>
                     </ul>
                 </div>
             </div>

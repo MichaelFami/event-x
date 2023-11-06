@@ -12,17 +12,22 @@ import AddEvent from './AddEvent';
 
 export default function Main() {
     return (
-        <Routes>
-            <Route path='/user' element={<User />} />
-            <Route path='/event' element={<Event />} />
-            <Route path='/nav' element={<Nav />} />
-            <Route path='/member' element={<Member />} />
-            {/* <Route path='/header' element={<Header />} /> */}
-            <Route path='/calendar' element={<CalendarElement />} />
-            <Route path='/eventfind' element={<EventFind />} />
-            <Route path='/eventlist' element={<EventList />} />
-            <Route path='/organization' element={<Organization />} />
-            <Route path='/addevent' element={<AddEvent />} />
-        </Routes>
-    );
+        <div>
+            <Nav />
+            <Routes>
+                <Route path='/user' element={<User />} />
+                <Route path='/event' element={<Event />} />
+                <Route path='/nav' element={<Nav/>} />
+                <Route path='/member' element={<Member />} />
+                {/* <Route path='/header' element={<Header />} /> */}
+                <Route path='/calendar' element={<CalendarElement />} />
+                <Route path='/eventfind' element={<EventFind />} />
+                <Route path='/eventlist' element={<EventList />} />
+                <Route path='/organization' element={<Organization />} />
+                <Route path='/addevent' element={<AddEvent />} />
+            </Routes>
+
+        </div>
+
+    )
 }
