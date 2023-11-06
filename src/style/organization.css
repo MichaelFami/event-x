@@ -1,0 +1,5 @@
+.upcoming-events-ul, .past-event-ul, .org-members{
+
+    text-decoration: none;
+    list-style: none;
+}

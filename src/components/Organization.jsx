@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-
-import CalendarElement from "./Calendar";
+import { Container, Form, Col, Row } from 'react-bootstrap';
+// import CalendarElement from "./Calendar";
 import newEventsArray from '../assets/data/events';
 import pastEventsArray from '../assets/data/memberEvents';
 import orgMembersArray from "../assets/data/orgMembers";
+import '../style/organization.css';
 
 
 
@@ -25,58 +22,115 @@ export default function Organization() {
 
     return (
         <div >
-            <div className="org-outer">
+            <div className="org-main-container">
                 <h1 className="title">Organization Name</h1>
-                <CalendarElement />
-                <div className="org-more-info">
-                    <Link to="/addevent" className="links"><h3>Create New Event</h3></Link>
-                    <Link className="links"><h3>Upcoming Events</h3></Link>
-                    <Form.Group as={Col} className="how Events for..mb-3" controlId="formGridState">
-                        <Form.Select defaultValue="">
-                            <option value="">Show Events for ...</option>
-                            <option value="7">Next Week</option>
-                            <option value="30">Next Month</option>
-                            <option value="365">Next Year</option>
-                        </Form.Select>
-                    </Form.Group>
-                    <ul className="org-upcoming-event">
-
-                        {newEvents.map((event, index) => {
-                            return (
-                                <Link to="/events/:id" key={index}> <li>{event.title}   {event.time}</li> </Link>
-                            );
-                        })}
-
-                    </ul >
-                    <Link className="links"><h3>Past Events</h3></Link>
-                    <Form.Group as={Col} className="mb-3" controlId="formGridState">
-                        <Form.Select defaultValue="">
-                            <option value="">Show Events for ...</option>
-                            <option value="7">Last Week</option>
-                            <option value="30">Last Month</option>
-                            <option value="90">Last 90 Days</option>
-                            <option value="365">Last Year</option>
-                        </Form.Select>
-                    </Form.Group>
-                    <ul className="org-past-events">
-                        {pastEvents.map((event, index) => {
-                            return (
-                                <li key={index}>{event.title}{event.time}</li>
-                            );
-                        })}
-
-                    </ul>
+                {/* <CalendarElement /> */}
+                <Container className="create-event-container">
+                    <Row><Link to="/addevent" className="btn-primary">Create New Event</Link></Row>
+                </Container>
+                <Container className="org-upcoming-container">
+                    <Row>
+                        <Col>
+                            <Link><h3>Upcoming Events</h3></Link>
+                        </Col>
+                        <Col className="event-upcoming-date">
+                            <Form.Group controlId="formGridState">
+                                <Form.Select defaultValue="">
+                                    <option value="">Show Events for ...</option>
+                                    <option value="7">Next Week</option>
+                                    <option value="30">Next Month</option>
+                                    <option value="365">Next Year</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                </Container>
+                <Container>
+                    <Row className="org-upcoming-events">
+                        <ul className="upcoming-events-ul">
+                            {newEvents.map((event, index) => {
+                                return (
+                                    <div>
+                                        <Link to="/events/:id" key={index}>
+                                            <li>
+                                                <Row>
+                                                    <Col>{event.title}</Col>
+                                                    <Col className="event-date">{event.time}</Col>
+                                                </Row>
+                                            </li>
+                                        </Link>
+                                    </div>
+                                );
+                            })}
+                        </ul >
+                    </Row>
+                </Container>
+                <Container className="org-past-container">
+                    <Row>
+                        <Col>
+                            <Link><h3>Past Events</h3></Link>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId="formGridState">
+                                <Form.Select defaultValue="">
+                                    <option value="">Show Events for ...</option>
+                                    <option value="7">Last Week</option>
+                                    <option value="30">Last Month</option>
+                                    <option value="90">Last 90 Days</option>
+                                    <option value="365">Last Year</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                </Container>
+                <Container>
+                    <Row>
+                        <ul className="past-event-ul">
+                            {pastEvents.map((event, index) => {
+                                return (
+                                    <li key={index}>
+                                        <Row>
+                                            <Col>
+                                                {event.title}
+                                            </Col>
+                                            <Col>
+                                                {event.time}
+                                            </Col>
+                                        </Row>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </Row>
+                </Container>
+                <Container>
                     <Link className="links"><h3>Members</h3></Link>
                     <ul className="org-members">
                         {members.map((member, index) => {
                             return (
-                                <li key={index}>{member.first_name} {member.last_name}</li>
+                                <div>
+                                    <li key={index}>
+                                        <Row>
+                                            <Col>
+                                                {member.first_name}
+                                            </Col>
+                                            <Col>
+                                                {member.last_name}
+                                            </Col>
+                                            <Col>
+                                                { }
+                                            </Col>
+                                        </Row>
+                                    </li>
+                                </div>
+
                             );
                         })}
                     </ul>
-                </div>
+                </Container>
             </div>
 
-        </div>
+
+        </div >
     );
 }
