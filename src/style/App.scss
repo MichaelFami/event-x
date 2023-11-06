@@ -1,11 +1,50 @@
-$primary: #ed5a24;
-$secondary: #a0a0b1;
-$light: #fbfbfb;
+// Colors
+$primary: #424530;
+$secondary: #a58e74;
+$light: #ffefcd;
 $dark: #283937;
-$success: #7c9643;
+$success: #738154;
 $info: #283937;
-$warning: #fa850b;
-$danger: #f44336;
+$warning: #ca8f4f;
+$danger: #ac5852;
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+body {
+    background-color: green;
+    --bs-body-font-family: 'Noto Serif', serif;
+}
+h1, h2, h3, h4, h5 {
+    --bs-heading-color: #424530;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+// nav bar styling
+.bg-body-tertiary {
+    --bs-tertiary-bg-rgb: 239, 235, 224;
+}
+.navbar-brand {
+    --bs-navbar-brand-color: #e09132;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+.navbar-brand::after {
+    content: 'X';
+    font-family: 'Noto Serif', serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+
+// event form styling
+form {
+    margin: 10px;
+}
+.btn {
+    background-color: pink;
+}
 
 // outer containers
 .user-outer, .org-outer, .find-event-outer, .event-list-outer, .event-outer {
