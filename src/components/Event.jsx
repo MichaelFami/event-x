@@ -1,6 +1,7 @@
 // import { Button } from "react-bootstrap/Button"
 
-export default function Event () {
+export default function Event (props) {
+    console.log(props)
     return (
         <div className="event-outer">
             <h1>Event Name</h1>

@@ -28,22 +28,27 @@ h1, h2, h3, h4, h5 {
 }
 .navbar-brand {
     --bs-navbar-brand-color: #e09132;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Noto Sertif', serif;
     text-transform: uppercase;
 }
 .navbar-brand::after {
     content: 'X';
-    font-family: 'Noto Serif', serif;
+    // font-family: 'Oswald', sans-serif;
     font-weight: 700;
     font-size: 1.7rem;
+}
+
+// buttons
+.links {
+    text-decoration: none;
 }
 
 // event form styling
 form {
     margin: 10px;
 }
-.btn {
-    background-color: pink;
+.btn-primary {
+    --bs-btn-bg: pink;
 }
 
 // outer containers
