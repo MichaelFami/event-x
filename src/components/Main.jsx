@@ -16,7 +16,8 @@ export default function Main() {
             <Nav />
             <Routes>
                 <Route path='/user' element={<User />} />
-                <Route path='/event' element={<Event />} />
+                <Route path='/events' element={<EventList />} />
+                <Route path='/events/:id' element={<Event />} />
                 <Route path='/nav' element={<Nav/>} />
                 <Route path='/member' element={<Member />} />
                 {/* <Route path='/header' element={<Header />} /> */}
