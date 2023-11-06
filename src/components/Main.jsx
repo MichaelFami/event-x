@@ -28,6 +28,5 @@ export default function Main() {
             </Routes>
 
         </div>
-
     )
 }

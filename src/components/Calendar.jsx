@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Calendar from "react-calendar";
-import './Calendar.css'
+import '../style/Calendar.css'
 
 
 // function tileClassName({ date, view }) {

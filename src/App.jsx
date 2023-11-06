@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from './components/Main'
-import './App.scss'
+import './style/App.scss'
 
 function App() {
 
