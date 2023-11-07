@@ -1,42 +1,45 @@
 // Colors
-$primary: #424530;
-$secondary: #a58e74;
-$light: #ffefcd;
-$dark: #283937;
-$success: #738154;
-$info: #283937;
-$warning: #ca8f4f;
-$danger: #ac5852;
+$primary: #adc7fe;
+$secondary: #dafea4;
+$light: #fbf8f4;
+$dark: #162802;
+$success: #babd8e;
+$info: #82b7b0;
+$warning: #fa9500;
+$danger: #eb3b20;
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
 body {
-    background-color: green;
-    --bs-body-font-family: 'Noto Serif', serif;
+    --bs-body-font-family: 'Zilla Slab', serif;
 }
 h1, h2, h3, h4, h5 {
-    --bs-heading-color: #424530;
-    text-shadow: 2px 2px 5px rgb(114, 88, 117);
-    font-family: 'Oswald', sans-serif;
+    --bs-heading-color: #162802;
+    // text-shadow: 2px 2px 5px rgb(140, 76, 19);
+    font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    // text-transform: uppercase;
 }
 // nav bar styling
 .bg-body-tertiary {
-    --bs-tertiary-bg-rgb: 239, 235, 224;
+    --bs-tertiary-bg-rgb: 22, 40, 2;
 }
 .navbar-brand {
-    --bs-navbar-brand-color: #f35ad5;
-    font-family: 'Noto Sertif', serif;
-    text-transform: uppercase;
-}
-.navbar-brand::after {
-    content: 'X';
-    // font-family: 'Oswald', sans-serif;
+    // --bs-navbar-brand-color: #f35ad5;
+    --bs-navbar-brand-color: #fbf8f4;
+    font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    font-size: 1.7rem;
+}
+.user-more-info, .org-more-info {
+    margin-top: 20px;
+    // background-color: rgba(255, 192, 203, 0.406);
+}
+.navbar-toggler {
+    color: #fbf8f4;
+    --bs-navbar-color: #fbf8f4;
 }
 
 // buttons
@@ -49,16 +52,26 @@ form {
     margin: 10px;
 }
 .btn-primary {
-    --bs-btn-bg: pink;
-   border: solid 3px pink;
-   text-decoration: none;
-    background-color: pink;
-    border-radius: 5px;
-    color: white;
-    text-shadow: 2px 2px 5px rgb(106, 87, 109);
+    --button-color: #dafea4;
+    // --bs-btn-bg: var(--button-color);
+    text-decoration: none;
+    color: #162802;
+
+    border:2px solid #162802;
+    background-color: var(--button-color);
+    // background-color: transparent;
+
+    box-shadow: 3px 3px #a0c7fe;
+    // border-radius: 5px;
+    // text-shadow: 2px 2px 5px rgb(106, 87, 109);
     text-align: center;
+    width: 250px;
     padding:5px;
     margin: 5px;
+}
+
+.event-list-head {
+    text-decoration: none;
 }
 
 // outer containers
@@ -66,20 +79,29 @@ form {
     margin: 10px;
 }
 
-// nav
-.nav {
-    background-color: orange;
-}
-
-.user-more-info, .org-more-info {
-    margin-top: 20px;
-    // background-color: rgba(255, 192, 203, 0.406);
-}
+// org page
 
 .title{
+    margin: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #dafea4;
+}
+
+.upcoming-events-ul, .past-event-ul {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    // border: 3px solid #c5ceba;
+}
+.event-row, .member-row {
+    padding: 10px 0;
+    border-bottom: 2px solid #c5ceba;
+}
+.event-links {
+    text-decoration: none;
+    color: #546a89;
 }
 
 @import '/node_modules/bootstrap/scss/bootstrap.scss'
