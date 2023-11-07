@@ -129,8 +129,6 @@ export default function Organization() {
                     </ul>
                 </Container>
             </div>
-
-
         </div >
     );
 }
