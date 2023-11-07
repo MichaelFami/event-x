@@ -12,8 +12,6 @@ export default function CalendarElement() {
 
     return (
         <div>
-            <h1>This is where the Header & Nav bar</h1>
-
             <h2 className='greeting'>Welcome Test Member</h2>
             <h3>My Events:</h3>
             <ul>

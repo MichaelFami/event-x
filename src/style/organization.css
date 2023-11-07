@@ -1,5 +1,29 @@
 .upcoming-events-ul, .past-event-ul, .org-members{
-
     text-decoration: none;
     list-style: none;
+}
+.create-event-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#new {
+    font-weight: 700;
+}
+.container-2 {
+    margin-top: 50px;
+}
+
+@media screen and (min-width: 800px) {  
+    .org-main-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .container-2 {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .org-card {
+        border: 2px solid #c5ceba;
+    }
 }
