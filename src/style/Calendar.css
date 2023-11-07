@@ -36,6 +36,9 @@
     height: 40px;
     /* background-color: green; */
 }
+.links {
+    text-decoration: none;
+}
 
 /* days */
 .react-calendar__month-view__weekdays {
