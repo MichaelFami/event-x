@@ -45,6 +45,5 @@ border:1px solid black
     .member-body {
         flex-direction: row;
         align-items: flex-start;
-        
     }
 }
