@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Nav from './Nav';
+import LogIn from './LogIn';
 // import Header from './Header'
 import Event from './Event';
 import User from './User';
@@ -15,6 +16,7 @@ export default function Main() {
         <div>
             <Nav />
             <Routes>
+                <Route path='/' element={<LogIn/>} />
                 <Route path='/user' element={<User />} />
                 <Route path='/event' element={<Event />} />
                 <Route path='/nav' element={<Nav/>} />
