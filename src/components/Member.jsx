@@ -1,5 +1,6 @@
 import eventsArray from '../assets/data/memberEvents';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 import '../style/member.css';
 export default function CalendarElement() {
     const [memberEvents, setMemberEvents] = useState([]);
@@ -11,38 +12,40 @@ export default function CalendarElement() {
     }, []);
 
     return (
-        <div>
-            <h2 className='greeting'>Welcome Test Member</h2>
-            <h3>My Events:</h3>
-            <ul>
-                <div className='userEvents'>
-                    {memberEvents.map((item, index) => {
-                        return (
-                            <ul key={index} className="member-event">
+        <div className='member-container'>
+            <h2 className='title'>Welcome Test Member</h2>
+            <div className='member-body'>
+                <div className='events-outer'>
+                    <h3>Upcoming Events:</h3>
+                    <div className='userEvents'>
+                        {memberEvents.map((item, index) => {
+                            return (
+                                <div key={index} className="member-event">
+                                    <div>{item.title}</div>
+                                    <div>{item.location}</div>
+                                    <div>{item.time}</div>
+                                    <div className='check'>
+                                        <label>
+                                            <input type="checkbox" />
 
-                                <li>{item.title}</li>
-                                <li >{item.location}</li>
-                                <li >{item.time}</li>
-                                <li >
-                                    <label>
-                                        <input type="checkbox" />
+                                        </label>
+                                        <div >
+                                            {item.addToFavorite}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
 
-                                    </label>
-
-                                </li>
-                                <li >
-
-                                    {item.addToFavorite}
-                                </li>
-
-                            </ul>
-                        );
-
-                    })}
-
-
+                        })}
+                    </div>
                 </div>
-            </ul>
+                <div className="quick-links">
+                    <h3 className="quick-links">⇒ Quick Links ⇐</h3>
+                    <Link to="/eventlist" className="btn-primary">Find An Event</Link>
+                    <Link to="/eventlist" className="btn-primary">Find An Organization</Link>
+                    <Link to="/eventlist" className="btn-primary">Past Events</Link>
+                </div>
+            </div>
         </div>
     );
 }
