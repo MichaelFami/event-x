@@ -3,14 +3,14 @@ import Button from 'react-bootstrap/Button';
 
 export default function LogIn () {
     return (
-        <div className="user-outer">
-                <Button variant="light" type="submit">
-                    <Link to='organization' >Log in as Organization</Link>
-                </Button>
+        <div className="login-outer">
+                <button type="submit" className="btn-login">
+                    <Link to='organization' className="login-links">Log in as Organization</Link>
+                </button>
 
-                <Button variant="light" type="submit">
-                    <Link to='member' >Log in as Member</Link>
-                </Button>
+                <button type="submit" className="btn-login">
+                    <Link to='member'className="login-links" >Log in as Member</Link>
+                </button>
         </div>
     )
 }

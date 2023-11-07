@@ -41,10 +41,37 @@ h1, h2, h3, h4, h5 {
     color: #fbf8f4;
     --bs-navbar-color: #fbf8f4;
 }
+.nav-links {
+    padding: 0 20px;
+}
 
 // buttons
 .links {
     text-decoration: none;
+}
+
+//login 
+.login-outer {
+    height: 100vh;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btn-login {
+    padding: 10px;
+    background-color: #dafea4;
+    border: 2px solid #162802;
+    box-shadow: 5px 5px #a0c7fe;
+    width: 300px;
+    margin: 20px;
+}
+.btn-login:hover {
+    box-shadow: 10px 10px #a0c7fe;
+}
+.login-links {
+    text-decoration: none;
+    color: #162802;
 }
 
 // event form styling
@@ -53,23 +80,21 @@ form {
 }
 .btn-primary {
     --button-color: #dafea4;
-    // --bs-btn-bg: var(--button-color);
     text-decoration: none;
     color: #162802;
 
     border:2px solid #162802;
     background-color: var(--button-color);
-    // background-color: transparent;
 
     box-shadow: 3px 3px #a0c7fe;
-    // border-radius: 5px;
-    // text-shadow: 2px 2px 5px rgb(106, 87, 109);
     text-align: center;
     width: 250px;
     padding:5px;
     margin: 5px;
 }
-
+.btn-primary:hover {
+    box-shadow: 5px 5px #a0c7fe;
+}
 .event-list-head {
     text-decoration: none;
 }
