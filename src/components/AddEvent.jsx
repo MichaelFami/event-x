@@ -23,18 +23,18 @@ export default function AddEvent() {
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="name">
+        <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Event name</Form.Label>
                 <Form.Control type="event" placeholder="Enter Event Name" onChange={handleChange} />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="address">
+            <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Address</Form.Label>
                 <Form.Control placeholder="1234 Main St" onChange={handleChange} />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="address2">
+            <Form.Group className="mb-3" controlId="formGridAddress2">
                 <Form.Label>Address 2</Form.Label>
                 <Form.Control placeholder="Apartment, studio, or floor" onChange={handleChange} />
             </Form.Group>
@@ -45,21 +45,21 @@ export default function AddEvent() {
                     <Form.Control onChange={handleChange} />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="state">
+                <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>State</Form.Label>
-                    <Form.Select defaultValue="Choose..." onChange={handleChange}>
+                    <Form.Select defaultValue="Choose...">
                         <option>Choose...</option>
                         {stateAbbrev.map((abb) => (
                             <option key={abb}>{abb}</option>
                         ))}
                     </Form.Select>
                 </Form.Group>
-                <Form.Group as={Col} controlId="zip">
+                <Form.Group as={Col} controlId="formGridZip">
                     <Form.Label>Zip</Form.Label>
-                    <Form.Control onChange={handleChange} />
+                    <Form.Control />
                 </Form.Group>
             </Row>
-            <Form.Group className="mb-3" controlId="description">
+            <Form.Group className="mb-3" controlId="formDescription">
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" type="description" placeholder="Enter Event Name" onChange={handleChange} />
             </Form.Group>
