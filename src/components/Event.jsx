@@ -1,7 +1,7 @@
 // import { Button } from "react-bootstrap/Button"
 
-export default function Event (props) {
-    console.log(props)
+export default function Event(props) {
+    console.log(props);
     return (
         <div className="event-outer">
             <h1>Event Name</h1>
@@ -21,5 +21,5 @@ export default function Event (props) {
                 </ul>
             </div>
         </div>
-    )
+    );
 }
