@@ -132,11 +132,10 @@ export default function Organization() {
                             <Link className="event-list-head"><h3>Members</h3></Link>
                         </Container>
                         <Container>
-                                <ul className="org-members mt-3">
+                                <div className="org-members mt-3">
                                     {members.map((member, index) => {
                                         return (
-                                            <div>
-                                                <li key={index}>
+                                            <div key={index}>  
                                                     <Row className="member-row">
                                                         <Col>
                                                             {member.first_name}
@@ -147,12 +146,11 @@ export default function Organization() {
                                                         <Col>
                                                             { }
                                                         </Col>
-                                                    </Row>
-                                                </li>
+                                                    </Row>                    
                                             </div>
                                         );
                                     })}
-                                </ul>
+                                </div>
                         </Container>
                     </div>
                 </div>
