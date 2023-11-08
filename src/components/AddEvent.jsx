@@ -17,7 +17,18 @@ export default function AddEvent() {
     // state for gathering data
     const initialState = { date: '', name: '', address: '', address2: '', city: '', state: '', zip: '', description: '', capacity: '' };
     const [formState, setFormState] = useState(initialState);
+    const [loggedInOrg, setLoggedInOrg] = useState('')
     const navigate = useNavigate();
+
+    // setting the logged in org
+    useEffect(()=> {
+        const currentOrg = async() => {
+            let response = await axios.get(`http://localhost:3001/organization/${orgId}`)
+            console.log(response.data)
+            setLoggedInOrg(response.data)
+        }
+        currentOrg()
+    }, [])
 
     const handleChange = e => {
         console.log(e.target.id, e.target.value)
@@ -35,63 +46,72 @@ export default function AddEvent() {
             })
         // navigate('/event/:id');
     };
-
-    return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Event name</Form.Label>
-                <Form.Control type="event" placeholder="Enter Event Name" onChange={handleChange} />
-            </Form.Group>
-
-            <Form.Group controlId='date'>
-                <Form.Label>Date</Form.Label>
-                <Form.Control type="date" onChange={handleChange}/>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="address">
-                <Form.Label>Address</Form.Label>
-                <Form.Control placeholder="1234 Main St" onChange={handleChange} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="address2">
-                <Form.Label>Address 2</Form.Label>
-                <Form.Control placeholder="Apartment, studio, or floor" onChange={handleChange} />
-            </Form.Group>
-
-            <Row className="mb-3">
-                <Form.Group as={Col} controlId="city">
-                    <Form.Label>City</Form.Label>
-                    <Form.Control onChange={handleChange} />
+    if (!orgId) {
+        return (
+            <div className="spinner-container">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>
+          );
+    } else {
+        return (
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="name">
+                    <Form.Label>Event name</Form.Label>
+                    <Form.Control type="event" placeholder="Enter Event Name" onChange={handleChange} />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="state">
-                    <Form.Label>State</Form.Label>
-                    <Form.Select defaultValue="Choose..." onChange={handleChange}>
-                        <option>Choose...</option>
-                        {stateAbbrev.map((abb) => (
-                            <option key={abb}>{abb}</option>
-                        ))}
-                    </Form.Select>
+                <Form.Group controlId='date'>
+                    <Form.Label>Date</Form.Label>
+                    <Form.Control type="date" onChange={handleChange}/>
                 </Form.Group>
-                <Form.Group as={Col} controlId="zip">
-                    <Form.Label>Zip</Form.Label>
-                    <Form.Control onChange={handleChange} />
+
+                <Form.Group className="mb-3" controlId="address">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control placeholder="1234 Main St" onChange={handleChange} />
                 </Form.Group>
-            </Row>
-            <Form.Group className="mb-3" controlId="description">
-                <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" type="description" placeholder="Enter Event Name" onChange={handleChange} />
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="capacity">
-                <Form.Label>Max Capacity</Form.Label>
-                <Form.Control placeholder="#" onChange={handleChange} />
-            </Form.Group>
+                <Form.Group className="mb-3" controlId="address2">
+                    <Form.Label>Address 2</Form.Label>
+                    <Form.Control placeholder="Apartment, studio, or floor" onChange={handleChange} />
+                </Form.Group>
+
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="city">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control onChange={handleChange} />
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="state">
+                        <Form.Label>State</Form.Label>
+                        <Form.Select defaultValue="Choose..." onChange={handleChange}>
+                            <option>Choose...</option>
+                            {stateAbbrev.map((abb) => (
+                                <option key={abb}>{abb}</option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="zip">
+                        <Form.Label>Zip</Form.Label>
+                        <Form.Control onChange={handleChange} />
+                    </Form.Group>
+                </Row>
+                <Form.Group className="mb-3" controlId="description">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control as="textarea" type="description" placeholder="Enter Event Name" onChange={handleChange} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="capacity">
+                    <Form.Label>Max Capacity</Form.Label>
+                    <Form.Control placeholder="#" onChange={handleChange} />
+                </Form.Group>
 
 
-            <button variant="primary" type="submit" className='btn-submit'>
-                Submit
-            </button>
-        </Form>
-    );
+                <button variant="primary" type="submit" className='btn-submit'>
+                    Submit
+                </button>
+            </Form>
+        );
+    }
 }
