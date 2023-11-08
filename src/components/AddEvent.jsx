@@ -33,7 +33,7 @@ export default function AddEvent() {
             .then(res=>{
                 console.log(res)
                 console.log(res.data.event._id)
-                navigate(`event/${res.data.event._id}`)
+                navigate(`events/${res.data.event._id}`, {id: res.data.event._id})
             })
         // navigate('/event/:id');
     };
