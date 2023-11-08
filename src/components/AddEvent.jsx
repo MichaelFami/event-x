@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -9,6 +9,12 @@ import Row from 'react-bootstrap/Row';
 export default function AddEvent() {
     const stateAbbrev = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
 
+    // getting the id from the organization
+    let location = useLocation()
+    // console.log(location.state)
+    const orgId = location.state.orgId
+
+    // state for gathering data
     const initialState = { date: '', name: '', address: '', address2: '', city: '', state: '', zip: '', description: '', capacity: '' };
     const [formState, setFormState] = useState(initialState);
     const navigate = useNavigate();
