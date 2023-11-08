@@ -13,14 +13,6 @@ export default function AddEvent() {
     const [formState, setFormState] = useState(initialState);
     const navigate = useNavigate();
 
-    // useEffect(()=> {
-    //     const makeNewEvent = async () => {
-    //         const response = await axios.get(`http://localhost:3001/event`)
-    //         console.log(response.data)
-    //     }
-    //     makeNewEvent()
-    // }, [])
-
     const handleChange = e => {
         console.log(e.target.id, e.target.value)
         setFormState({ ...formState, [e.target.id]: e.target.value });
