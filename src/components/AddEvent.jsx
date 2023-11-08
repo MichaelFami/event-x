@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -12,29 +13,49 @@ export default function AddEvent() {
     const [formState, setFormState] = useState(initialState);
     const navigate = useNavigate();
 
+    // useEffect(()=> {
+    //     const makeNewEvent = async () => {
+    //         const response = await axios.get(`http://localhost:3001/event`)
+    //         console.log(response.data)
+    //     }
+    //     makeNewEvent()
+    // }, [])
+
     const handleChange = e => {
-        // console.log(e.target.id, e.target.value)
+        console.log(e.target.id, e.target.value)
         setFormState({ ...formState, [e.target.id]: e.target.value });
     };
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(formState);
-        navigate('/event/:id');
+        let newAddress = `${formState.address}, ${formState.address2}, ${formState.city}, ${formState.state}, ${formState.zip}`
+        console.log(formState, newAddress);
+        axios.post(`http://localhost:3001/event`, { name: formState.name, description: formState.description, location: newAddress, capacity: formState.capacity, date: formState.date })
+            .then(res=>{
+                console.log(res)
+                console.log(res.data.event._id)
+                navigate(`events/${res.data.event._id}`, {id: res.data.event._id})
+            })
+        // navigate('/event/:id');
     };
 
     return (
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Event name</Form.Label>
                 <Form.Control type="event" placeholder="Enter Event Name" onChange={handleChange} />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formGridAddress1">
+            <Form.Group controlId='date'>
+                <Form.Label>Date</Form.Label>
+                <Form.Control type="date" onChange={handleChange}/>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="address">
                 <Form.Label>Address</Form.Label>
                 <Form.Control placeholder="1234 Main St" onChange={handleChange} />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formGridAddress2">
+            <Form.Group className="mb-3" controlId="address2">
                 <Form.Label>Address 2</Form.Label>
                 <Form.Control placeholder="Apartment, studio, or floor" onChange={handleChange} />
             </Form.Group>
@@ -45,21 +66,21 @@ export default function AddEvent() {
                     <Form.Control onChange={handleChange} />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridState">
+                <Form.Group as={Col} controlId="state">
                     <Form.Label>State</Form.Label>
-                    <Form.Select defaultValue="Choose...">
+                    <Form.Select defaultValue="Choose..." onChange={handleChange}>
                         <option>Choose...</option>
                         {stateAbbrev.map((abb) => (
                             <option key={abb}>{abb}</option>
                         ))}
                     </Form.Select>
                 </Form.Group>
-                <Form.Group as={Col} controlId="formGridZip">
+                <Form.Group as={Col} controlId="zip">
                     <Form.Label>Zip</Form.Label>
-                    <Form.Control />
+                    <Form.Control onChange={handleChange} />
                 </Form.Group>
             </Row>
-            <Form.Group className="mb-3" controlId="formDescription">
+            <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" type="description" placeholder="Enter Event Name" onChange={handleChange} />
             </Form.Group>
@@ -70,9 +91,9 @@ export default function AddEvent() {
             </Form.Group>
 
 
-            <Button variant="primary" type="submit">
+            <button variant="primary" type="submit" className='btn-submit'>
                 Submit
-            </Button>
+            </button>
         </Form>
     );
 }

@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5 {
 form {
     margin: 10px;
 }
-.btn-primary {
+.btn-primary, .btn-submit {
     --button-color: #dafea4;
     text-decoration: none;
     color: #162802;
@@ -92,11 +92,14 @@ form {
     padding:5px;
     margin: 5px;
 }
-.btn-primary:hover {
+.btn-primary:hover, .btn-submit:hover {
     box-shadow: 5px 5px #a0c7fe;
 }
 .event-list-head {
     text-decoration: none;
+}
+#date {
+    width: 170px;
 }
 
 // outer containers

@@ -1,14 +1,30 @@
 // import { Button } from "react-bootstrap/Button"
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import axios from "axios";
 
-export default function Event(props) {
-    console.log(props);
+export default function Event() {
+    let { id } = useParams()
+    console.log(id)
+    const [oneEvent, setOneEvent] = useState('')
+
+    useEffect(()=> {
+        const getOneEvent = async () => {
+            console.log(id)
+            const response = await axios.get(`http://localhost:3001/event/${id}`)
+            console.log(response.data)
+            setOneEvent(response.data)
+        }
+        getOneEvent()
+    }, [])
+
     return (
         <div className="event-outer">
-            <h1>Event Name</h1>
+            <h1>{oneEvent.name}</h1>
             <h5>Oranizaiton</h5>
-            <h5>Date</h5>
-            <h5>Location</h5>
-            <p>Discription of the event. Long description with lots of details.</p>
+            <h5>{oneEvent.date}</h5>
+            <h5>{oneEvent.location}</h5>
+            <p>{oneEvent.description}</p>
             <div className="event-volunteer">
                 <div>Volunteers needed: #</div>
             </div>
