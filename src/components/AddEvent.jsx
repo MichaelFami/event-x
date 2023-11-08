@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -38,13 +38,24 @@ export default function AddEvent() {
         e.preventDefault();
         let newAddress = `${formState.address}, ${formState.address2}, ${formState.city}, ${formState.state}, ${formState.zip}`
         console.log(formState, newAddress);
-        axios.post(`http://localhost:3001/event`, { name: formState.name, description: formState.description, location: newAddress, capacity: formState.capacity, date: formState.date })
-            .then(res=>{
-                console.log(res)
-                console.log(res.data.event._id)
-                navigate(`events/${res.data.event._id}`, {id: res.data.event._id})
-            })
-        // navigate('/event/:id');
+        const onHandleSubmit = async () => {
+            let eventId = ''
+            try {
+                await axios.post(`http://localhost:3001/event`, { name: formState.name, description: formState.description, location: newAddress, capacity: formState.capacity, date: formState.date })
+                    .then(res=>{ eventId = res.data.event._id})
+                // //second call (not working)
+                // try {
+                //     await axios.put(`http://localhost:3001/organization/${loggedInOrg._id}`, {events: [{eventId: eventId}]})
+                // } catch (error) {
+                //     console.log(error.message)
+                // }
+            } catch (error) {
+                console.log(error.message)
+            }
+        console.log(eventId)
+        navigate(`events/${eventId}0`, {id: eventId});
+        }
+        onHandleSubmit()
     };
     if (!orgId) {
         return (
