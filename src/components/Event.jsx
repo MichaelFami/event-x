@@ -6,13 +6,16 @@ import moment from 'moment';
 import Spinner from 'react-bootstrap/Spinner';
 
 export default function Event() {
+    const [oneEvent, setOneEvent] = useState('')
+    const [makeEdit, setMakeEdit] = useState(false)
+
     // id for dynamic usage:
     // let { id } = useParams()
+
     // hard coded for testing:
     let id = `654bda7e75a6284385c78905`
     // console.log(id)
 
-    const [oneEvent, setOneEvent] = useState('')
     // get events to show up on the page
     useEffect(()=> {
         const getOneEvent = async () => {
@@ -35,8 +38,7 @@ export default function Event() {
     // console.log(modifiedDate)
 
     // make form editable
-    const [makeEdit, setMakeEdit] = useState(false)
-    console.log(makeEdit)
+    // console.log(makeEdit)
     const editContent = () => {
         setMakeEdit(true)
         console.log(makeEdit)

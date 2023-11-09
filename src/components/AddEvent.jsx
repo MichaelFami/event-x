@@ -43,7 +43,7 @@ export default function AddEvent() {
             try {
                 await axios.post(`http://localhost:3001/event`, { name: formState.name, description: formState.description, location: newAddress, capacity: formState.capacity, date: formState.date })
                     .then(res=>{ eventId = res.data.event._id})
-                // //second call (not working)
+                // //second call (not working, trying to hook up)
                 // try {
                 //     await axios.put(`http://localhost:3001/organization/${loggedInOrg._id}`, {events: [{eventId: eventId}]})
                 // } catch (error) {
