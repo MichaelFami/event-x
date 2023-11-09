@@ -4,44 +4,70 @@ import axios from "axios";
 import { Container, Form, Col, Row } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 // import CalendarElement from "./Calendar";
-import newEventsArray from '../assets/data/events';
-import pastEventsArray from '../assets/data/memberEvents';
 import orgMembersArray from "../assets/data/orgMembers";
 import '../style/organization.css';
 
 export default function Organization() {
-    const [loggedInOrg, setLoggedInOrg] = useState()
-    const [newEvents, setNewEvents] = useState([]);
-    const [pastEvents, setPastEvents] = useState([]);
+    const [loggedInOrg, setLoggedInOrg] = useState();
     const [members, setMembers] = useState([]);
-    const [upcomingDate, setUpcomingDate] = useState("");
-    const [pastDate, setPastDate] = useState("");
-
-    useEffect(()=> {
-        const loginOrganizer = async () => {
-            const response = await axios.get(`http://localhost:3001/organization/654aaaab33e9ac76500fc408`)
-            console.log(response.data)
-            setLoggedInOrg(response.data)
-        }
-        loginOrganizer()
-    }, [])
+    const [futureEvents, setFutureEvents] = useState([]);
+    const [showFutureEvents, setShowFutureEvents] = useState([]);
+    const [pastEvents, setPastEvents] = useState([]);
+    const [showPastEvents, setShowPastEvents] = useState([]);
+    const todayDate = new Date();
 
     useEffect(() => {
-        setNewEvents(newEventsArray);
-        setPastEvents(pastEventsArray);
+        const loginOrganizer = async () => {
+            const response = await axios.get(`http://localhost:3001/organization/`);
+            console.log(response.data);
+            setLoggedInOrg(response.data);
+        };
+        const loadAllEvents = async () => {
+            let allEvents = await axios.get(`http://localhost:3001/event`);
+            let inFutureEvents = [];
+            let inPastEvents = [];
+            allEvents.data.forEach((event) => {
+                event.date >= todayDate.toISOString() ? inFutureEvents.push(event) : inPastEvents.push(event);
+            });
+            setFutureEvents([...inFutureEvents]);
+            setPastEvents([...inPastEvents]);
+        };
+        loginOrganizer();
+        loadAllEvents();
+    }, []);
+
+    useEffect(() => {
+
         setMembers(orgMembersArray);
     });
 
     const filterUpcomingDate = (event) => {
-        setUpcomingDate(event.target.value);
+        console.log(event.target.value);
+        console.log(futureEvents);
+
+        const upcomingDates = new Date();
+        upcomingDates.setDate(todayDate.getDate() + Number(event.target.value));
+        console.log("Today is :", todayDate.toISOString(), "Upcoming date is: ", upcomingDates.toISOString());
+
+        let futureEventList = [];
+        futureEventList = futureEvents.filter((eventFilter) => eventFilter.date <= upcomingDates.toISOString());
+
+        setShowFutureEvents(futureEventList);
     };
 
     const filterPastDate = (event) => {
-        setPastDate(event.target.value);
+        console.log(event.target.value);
+        console.log(pastEvents);
+
+        const pastDates = new Date();
+        pastDates.setDate(todayDate.getDate() - Number(event.target.value));
+        console.log("Today is : ", todayDate.toISOString(), "Past date is: ", pastDates.toISOString());
+
+        let pastEventList = [];
+        pastEventList = pastEvents.filter((eventFilter) => eventFilter.date >= pastDates.toISOString());
+        setShowPastEvents(pastEventList);
     };
 
-    console.log(upcomingDate);
-    console.log(pastDate);
     if (!loggedInOrg) {
         return (
             <div className="spinner-container">
@@ -49,7 +75,7 @@ export default function Organization() {
                     <span className="visually-hidden">Loading...</span>
                 </Spinner>
             </div>
-          );
+        );
     } else {
         return (
             <div >
@@ -59,7 +85,7 @@ export default function Organization() {
                         {/* <CalendarElement /> */}
                         <Container className="create-event-container">
                             <h3 className="quick-links">⇒ Quick Links ⇐</h3>
-                            <Link to="/addevent" state={{orgId: loggedInOrg._id}} className="btn-primary" id="new" >Create New Event</Link>
+                            <Link to="/addevent" state={{ orgId: loggedInOrg._id }} className="btn-primary" id="new" >Create New Event</Link>
                             <Link to="/eventlist" className="btn-primary">Upcoming Events</Link>
                             <Link to="/eventlist" className="btn-primary">Past Events</Link>
                         </Container>
@@ -75,7 +101,7 @@ export default function Organization() {
                                     </Col> */}
                                     <Col className="event-upcoming-date">
                                         <Form.Group controlId="formGridState">
-                                            <Form.Select defaultValue={upcomingDate} onChange={filterUpcomingDate}>
+                                            <Form.Select defaultValue={0} onChange={filterUpcomingDate}>
                                                 <option value="">Show Events for ...</option>
                                                 <option value="7">Next Week</option>
                                                 <option value="30">Next Month</option>
@@ -88,14 +114,16 @@ export default function Organization() {
                             <Container>
                                 <Row className="org-upcoming-events">
                                     <ul className="upcoming-events-ul mt-3">
-                                        {newEvents.map((event, index) => {
+                                        {showFutureEvents.map((event, index) => {
                                             return (
                                                 <div className="event-row">
                                                     <Link to="/events/:id" key={index} className="event-links">
                                                         <li>
                                                             <Row>
-                                                                <Col>{event.title}</Col>
-                                                                <Col className="event-date">{event.time}</Col>
+                                                                <Col>{event.name}</Col>
+                                                                <Col className="event-date">
+                                                                    {new Date(event.date).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })}
+                                                                </Col>
                                                             </Row>
                                                         </li>
                                                     </Link>
@@ -110,12 +138,9 @@ export default function Organization() {
                             <Container className="org-past-container  mt-3">
                                 <Link className="event-list-head"><h3>Past Events</h3></Link>
                                 <Row>
-                                    {/* <Col>
-                                        <Link><h3>Past Events</h3></Link>
-                                    </Col> */}
                                     <Col>
                                         <Form.Group controlId="formGridState">
-                                            <Form.Select defaultValue={pastDate} onChange={filterPastDate}>
+                                            <Form.Select defaultValue={0} onChange={filterPastDate}>
                                                 <option value="">Show Events for ...</option>
                                                 <option value="7">Last Week</option>
                                                 <option value="30">Last Month</option>
@@ -129,15 +154,15 @@ export default function Organization() {
                             <Container>
                                 <Row>
                                     <ul className="past-event-ul mt-3">
-                                        {pastEvents.map((event, index) => {
+                                        {showPastEvents.map((event, index) => {
                                             return (
                                                 <li key={index}>
                                                     <Row className="event-row">
                                                         <Col>
-                                                            {event.title}
+                                                            {event.name}
                                                         </Col>
                                                         <Col>
-                                                            {event.time}
+                                                            {new Date(event.date).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })}
                                                         </Col>
                                                     </Row>
                                                 </li>
