@@ -1,5 +1,5 @@
 // Colors
-$primary: #adc7fe;
+$primary: #637397;
 $secondary: #dafea4;
 $light: #fbf8f4;
 $dark: #162802;
@@ -23,19 +23,27 @@ h1, h2, h3, h4, h5 {
     font-weight: 700;
     // text-transform: uppercase;
 }
+
 // nav bar styling
 .bg-body-tertiary {
-    --bs-tertiary-bg-rgb: 22, 40, 2;
+    height: 60px;
+    --bs-tertiary-bg-rgb: 187, 212, 248;
+    border-bottom: 5px solid #546a89;
 }
 .navbar-brand {
     // --bs-navbar-brand-color: #f35ad5;
-    --bs-navbar-brand-color: #fbf8f4;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
+    background-image: url('../assets/event-x.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 60px;
+    width: 120px;
+    // --bs-navbar-brand-color: #fbf8f4;
+    // font-family: 'Outfit', sans-serif;
+    // font-weight: 700;
 }
 .user-more-info, .org-more-info {
     margin-top: 20px;
-    // background-color: rgba(255, 192, 203, 0.406);
 }
 .navbar-toggler {
     color: #fbf8f4;
@@ -45,13 +53,8 @@ h1, h2, h3, h4, h5 {
     padding: 0 20px;
 }
 
-// buttons
-.links {
-    text-decoration: none;
-}
-
 //login 
-.login-outer {
+.login-outer, .event-outer {
     height: 100vh;
     padding-top: 20px;
     display: flex;
@@ -62,7 +65,7 @@ h1, h2, h3, h4, h5 {
     padding: 10px;
     background-color: #dafea4;
     border: 2px solid #162802;
-    box-shadow: 5px 5px #a0c7fe;
+    box-shadow: 5px 5px #bbd4f8;
     width: 300px;
     margin: 20px;
 }
@@ -78,7 +81,11 @@ h1, h2, h3, h4, h5 {
 form {
     margin: 10px;
 }
-.btn-primary, .btn-submit {
+// buttons
+.links {
+    text-decoration: none;
+}
+.btn-primary, .btn-submit, .btn-events {
     --button-color: #dafea4;
     text-decoration: none;
     color: #162802;
@@ -88,11 +95,16 @@ form {
 
     box-shadow: 3px 3px #a0c7fe;
     text-align: center;
-    width: 250px;
     padding:5px;
     margin: 5px;
 }
-.btn-primary:hover, .btn-submit:hover {
+.btn-events {
+    width: 100px;
+}
+.btn-primary, .btn-submit {
+    width: 250px;
+}
+.btn-primary:hover, .btn-submit:hover, .btn-events:hover {
     box-shadow: 5px 5px #a0c7fe;
 }
 .event-list-head {
@@ -103,7 +115,7 @@ form {
 }
 
 // outer containers
-.user-outer, .org-main-container, .find-event-outer, .event-list-outer, .event-outer, .member-container {
+.user-outer, .org-main-container, .find-event-outer, .event-list-outer, .event-outer, .member-container, .event-outer {
     margin: 10px;
 }
 .spinner-container {
