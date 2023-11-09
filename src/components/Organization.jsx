@@ -7,7 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import orgMembersArray from "../assets/data/orgMembers";
 import '../style/organization.css';
 
-export default function Organization() {
+export default function Organization(props) {
     const [loggedInOrg, setLoggedInOrg] = useState();
     const [members, setMembers] = useState([]);
     const [futureEvents, setFutureEvents] = useState([]);
@@ -34,6 +34,7 @@ export default function Organization() {
         };
         loginOrganizer();
         loadAllEvents();
+        console.log("this is props", props);
     }, []);
 
     useEffect(() => {
