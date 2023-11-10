@@ -118,7 +118,7 @@ export default function Organization(props) {
                                         {showFutureEvents.map((event, index) => {
                                             return (
                                                 <div className="event-row">
-                                                    <Link to="/events/:id" key={index} className="event-links">
+                                                    <Link to={`/addevent/events/${event._id}`} key={index} className="event-links">
                                                         <li>
                                                             <Row>
                                                                 <Col>{event.name}</Col>

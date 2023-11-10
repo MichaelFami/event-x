@@ -123,6 +123,16 @@ form {
     display: flex;
     justify-content: center;
 }
+.event-list-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.event-list-card-container {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
 
 // org page
 
