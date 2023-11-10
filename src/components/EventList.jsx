@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
+import moment from 'moment';
+import Spinner from 'react-bootstrap/Spinner';
 import Card from 'react-bootstrap/Card';
 
 export default function EventList() {
@@ -15,27 +17,53 @@ export default function EventList() {
         getAllEvents();
 
     }, []);
+    console.log(events)
 
-    return (
-        <div className='event-list-outer mb-2 text-muted'>
-            <h1>Upcoming Events</h1>
-            <button onClick={() => history.back()} className="mb-2 text-muted">Return</button>
-            {events.map((event, index) => (<Card key={index} style={{ width: '18rem' }} className="mb-2 text-muted">
-                <Card.Body className="mb-2 text-muted">
-                    <Card.Title>{event.name}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Organization GOES HERE!</Card.Subtitle>
-                    <Card.Subtitle className="mb-2 text-muted">Time: {event.date.slice(0, 10)}</Card.Subtitle>
-                    <Card.Subtitle className="mb-2 text-muted">Location: {event.location}</Card.Subtitle>
+    // date formatting function, called in the card 
+    const formatDate = (eventDate) => {
+        // console.log(eventDate)
+        let modifiedDate = ''
+        if(!eventDate){
+            modifiedDate = ''
+        }else{
+            let inputDate = eventDate
+            modifiedDate = moment(inputDate).format("dddd, MMM DD")
+        }
+        return modifiedDate
+    }
+    
 
-                    <Card.Text>
-                        {event.description}
-                    </Card.Text>
-                    <Card.Link href="#">Read More</Card.Link>
-                </Card.Body>
-            </Card>)
+    if (!events) {
+        return (
+            <div className="spinner-container">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>
+          );
+    } else {
+        return (
+            <div className='event-list-outer mb-2 text-muted'>
+                <h1 className='title'>Upcoming Events</h1>
+                <button onClick={() => history.back()} className="mb-2 text-muted btn-primary">Return</button>
+                <div className='event-list-card-container'>
+                {events.map((event, index) => (<Card key={index} style={{ width: '18rem' }} className="mb-2 text-muted">
+                    <Card.Body className="mb-2 text-muted">
+                        <Card.Title>{event.name}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">Organization GOES HERE!</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">Date: {formatDate(event.date)}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">Location: {event.location}</Card.Subtitle>
 
-            )}
+                        <Card.Text>
+                            {event.description}
+                        </Card.Text>
+                        <Link to={`/addevent/events/${event._id}`}>Read More</Link>
+                    </Card.Body>
+                </Card>)
 
-        </div>
-    );
+                )}
+                </div>
+            </div>
+        );
+    }
 }

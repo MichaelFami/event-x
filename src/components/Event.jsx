@@ -1,19 +1,22 @@
 // import { Button } from "react-bootstrap/Button"
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import moment from 'moment';
 import Spinner from 'react-bootstrap/Spinner';
 
 export default function Event() {
+    const navigate = useNavigate() 
+
+    // states
     const [oneEvent, setOneEvent] = useState('')
     const [makeEdit, setMakeEdit] = useState(false)
 
     // id for dynamic usage:
-    // let { id } = useParams()
+    let { id } = useParams()
 
     // hard coded for testing:
-    let id = `654bda7e75a6284385c78905`
+    // let id = `654be0a675a6284385c78940`
     // console.log(id)
 
     // get events to show up on the page
@@ -35,7 +38,6 @@ export default function Event() {
         let inputDate = oneEvent.date
         modifiedDate = moment(inputDate).format("dddd, MMM DD")
     }
-    // console.log(modifiedDate)
 
     // make form editable
     // console.log(makeEdit)
@@ -61,6 +63,14 @@ export default function Event() {
         }
         onHandleSubmit()
         setMakeEdit(false)
+    }
+
+    const deleteEvent = () => {
+        const onHandleClick = async () => {
+            await axios.delete(`http://localhost:3001/event/${id}`)
+        }
+        onHandleClick()
+        navigate(`/organization`, console.log('event deleted'))
     }
 
     // show spinner or show page text
@@ -99,7 +109,7 @@ export default function Event() {
                 </div>
                 <div className="event-btns">
                     <button className='btn-events' onClick={()=> {editContent()}}>Edit</button>
-                    <button className="btn-events">Delete</button>
+                    <button className="btn-events" onClick={()=>{deleteEvent()}}>Delete</button>
                 </div>
             </div>
         );
