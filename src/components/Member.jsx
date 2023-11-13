@@ -6,6 +6,7 @@ import { Container, Form, Col, Row, FormCheck } from "react-bootstrap";
 import "../style/organization.css";
 
 export default function Member() {
+    let userId='654a61a96b44fee8d06b1366'
   const [futureEvents, setFutureEvents] = useState([]);
   const [showFutureEvents, setShowFutureEvents] = useState([]);
   const [pastEvents, setPastEvents] = useState([]);
@@ -128,7 +129,7 @@ export default function Member() {
                           </li>
                         </Link>
                         <Col>
-                               <CheckboxRSVP eventId={event._id}/>
+                               <CheckboxRSVP eventId={event._id} initialChecked={false} userId={userId}/>
                               </Col>
                       </div>
                     );
